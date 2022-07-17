@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useEffect, useState } from "react";
+import Cart from "./components/Cart";
+import res from "./data.json"
 function App() {
+
+  const [data,setData]=useState(res) 
+  const [rating,setRating]=useState(5)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+    <div>
+    <select name="sort by" id="" value={rating} onChange={(e)=>setRating(e.target.value)}>
+      <option value="">sort by Rating</option>
+      <option value="5">5</option>
+      <option value="4">4</option>
+      <option value="3">3</option>
+      <option value="2">2</option>
+      <option value="1">1</option>
+    </select>
+
+    {
+      data.map((e)=>{
+        return( <Cart r_name={e.r_name} image={e.image} rating={e.rating}/>)
+      })
+     
+    } 
     </div>
+     
+    
   );
 }
 
